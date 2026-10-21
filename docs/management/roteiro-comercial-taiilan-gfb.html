@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roteiro Comercial & Parceria Estratégica — Grupo Forró do Bom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      themeVariables: {
+        darkMode: true,
+        background: '#161616',
+        primaryColor: '#F6C300',
+        primaryTextColor: '#101010',
+        primaryBorderColor: '#F6C300',
+        lineColor: '#F6C300',
+        secondaryColor: '#242424',
+        tertiaryColor: '#1A1A1A'
+      }
+    });
+  </script>
+  <style>
+    :root {
+      --bg-main: #0c0c0d;
+      --bg-card: #151517;
+      --bg-elevated: #1e1e22;
+      --bg-faint: rgba(255, 255, 255, 0.03);
+      --primary: #F6C300;
+      --primary-hover: #ffd026;
+      --primary-glow: rgba(246, 195, 0, 0.18);
+      --text-main: #f5f5f7;
+      --text-muted: #a1a1aa;
+      --text-dim: #71717a;
+      --border-subtle: #27272a;
+      --border-accent: rgba(246, 195, 0, 0.35);
+      --accent-green: #10b981;
+      --accent-blue: #38bdf8;
+      --accent-red: #f43f5e;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 80px;
+    }
+
+    /* Top Sticky Navigation */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(12, 12, 13, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 14px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      background: var(--primary);
+      color: #101010;
+      font-weight: 800;
+      font-size: 14px;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      letter-spacing: -0.5px;
+    }
+
+    .brand-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      background: var(--bg-elevated);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+    }
+    .btn-secondary:hover {
+      background: #2a2a30;
+      border-color: #3f3f46;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #101010;
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      box-shadow: 0 0 16px var(--primary-glow);
+    }
+
+    /* Layout Container */
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    /* Header Presentation Card */
+    .hero-card {
+      background: linear-gradient(135deg, #18181b 0%, #121214 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 48px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(246, 195, 0, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    .tag-gold {
+      background: rgba(246, 195, 0, 0.12);
+      color: var(--primary);
+      border: 1px solid var(--border-accent);
+    }
+
+    .hero-title {
+      font-size: 38px;
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 14px;
+      color: #fff;
+    }
+
+    .hero-subtitle {
+      font-size: 19px;
+      color: var(--text-muted);
+      max-width: 780px;
+      margin-bottom: 28px;
+      font-weight: 400;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .meta-item {
+      font-size: 13px;
+    }
+    .meta-label {
+      color: var(--text-dim);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .meta-value {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    /* Section Cards */
+    .section-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      margin-bottom: 32px;
+      transition: border-color 0.2s ease;
+    }
+
+    .section-card:hover {
+      border-color: #38383e;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .badge-number {
+      background: var(--primary);
+      color: #101010;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+      color: #fff;
+    }
+
+    .section-objective {
+      background: var(--bg-faint);
+      border-left: 3px solid var(--primary);
+      padding: 12px 18px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .section-objective strong {
+      color: var(--primary);
+    }
+
+    /* Speech Bubble (Roteiro de Fala) */
+    .speech-box {
+      background: rgba(246, 195, 0, 0.04);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-md);
+      padding: 24px 28px;
+      margin: 20px 0;
+      position: relative;
+    }
+
+    .speech-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
+    }
+
+    .speech-content {
+      font-size: 16px;
+      line-height: 1.75;
+      color: #fafafa;
+      font-weight: 400;
+    }
+
+    .speech-content p + p {
+      margin-top: 14px;
+    }
+
+    .speech-content strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .speech-content em {
+      color: #e4e4e7;
+      font-style: italic;
+    }
+
+    /* Concept Callouts */
+    .callout {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    .callout-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .callout-title.gold { color: var(--primary); }
+    .callout-title.blue { color: var(--accent-blue); }
+    .callout-title.green { color: var(--accent-green); }
+
+    .callout-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Grid for Comparison / Features */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      margin: 24px 0;
+    }
+
+    .feature-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 22px;
+    }
+
+    .feature-card h4 {
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feature-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Pricing Offer Tiers */
+    .tier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 24px 0;
+    }
+
+    .tier-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .tier-card.featured {
+      border-color: var(--primary);
+      box-shadow: 0 0 24px rgba(246, 195, 0, 0.12);
+    }
+
+    .tier-badge {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: var(--primary);
+      color: #101010;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+
+    .tier-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .tier-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      min-height: 38px;
+    }
+
+    .tier-list {
+      list-style: none;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .tier-list li {
+      font-size: 13px;
+      color: var(--text-muted);
+      padding: 6px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .tier-list li::before {
+      content: '✓';
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    /* Mermaid Wrapper */
+    .diagram-container {
+      background: #141416;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin: 24px 0;
+      overflow-x: auto;
+      text-align: center;
+    }
+
+    /* Check Questions List */
+    .checklist {
+      list-style: none;
+      margin: 16px 0;
+    }
+
+    .checklist li {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      padding: 14px 18px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: var(--text-main);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .checklist-icon {
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    /* Print View */
+    @media print {
+      body {
+        background: #fff !important;
+        color: #111 !important;
+      }
+      .top-bar, .btn {
+        display: none !important;
+      }
+      .hero-card, .section-card, .feature-card, .tier-card, .callout, .speech-box {
+        background: #fff !important;
+        border: 1px solid #ccc !important;
+        color: #111 !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+      }
+      .hero-title, .section-title, .tier-title, .feature-card h4 {
+        color: #000 !important;
+      }
+      .speech-content {
+        color: #222 !important;
+      }
+      .speech-content strong {
+        color: #000 !important;
+        text-decoration: underline;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-title { font-size: 28px; }
+      .hero-card { padding: 28px; }
+      .section-card { padding: 22px; }
+      .top-bar { padding: 12px 16px; }
+      .speech-box { padding: 18px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation -->
+  <header class="top-bar">
+    <div class="brand-badge">
+      <span class="brand-logo">GFB</span>
+      <span class="brand-meta">Apresentação Comercial & Parceria Estratégica</span>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-secondary" onclick="window.print()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+        Imprimir / Salvar PDF
+      </button>
+      <a class="btn btn-primary" href="#bloco-proposta">
+        Ir para a Proposta
+      </a>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Hero Card -->
+    <section class="hero-card">
+      <span class="tag tag-gold">Roteiro de Vendas Consultivas — Skill Vendas & RCD</span>
+      <h1 class="hero-title">A Nova Fase do Grupo Forró do Bom</h1>
+      <p class="hero-subtitle">
+        Roteiro estratégico para reunião comercial com Taiilan Cavalcante: transição de escola informal para ecossistema líder com autoridade, processos automatizados e ticket valorizado.
+      </p>
+
+      <div class="meta-grid">
+        <div class="meta-item">
+          <div class="meta-label">Apresentador & Estrategista</div>
+          <div class="meta-value">Antonio Santos</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Interlocutor</div>
+          <div class="meta-value">Taiilan Cavalcante (Fundador GFB)</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Metodologia</div>
+          <div class="meta-value">Skill Vendas & Revenue-Centric Design</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Meta Decisória</div>
+          <div class="meta-value">Autonomia de Gestão + Parceria Comercial</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mapa Estratégico da Apresentação -->
+    <div class="diagram-container">
+      <h4 style="font-size: 14px; color: var(--text-muted); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px;">Mapa de Condução da Reunião (Jornada Decisória)</h4>
+      <pre class="mermaid">
+flowchart LR
+    A["1. Alinhamento de Papéis<br/>(Distribuição vs. Técnica)"] --> B["2. Diagnóstico & Mercado<br/>(A Fragilidade da Qualidade Isolada)"]
+    B --> C["3. Tese de Precificação<br/>(Não ser o mais barato)"]
+    C --> D["4. Demonstração Prática<br/>(Gestão + Aluno + Aquisição)"]
+    D --> E["5. Pilares Estruturais<br/>(Monitoria, Exames, CNPJ/Cultura)"]
+    E --> F["6. O Plano de 2 a 4 Meses<br/>('A Nova Cara do GFB')"]
+    F --> G["7. Proposta Comercial<br/>(Fechamento e Próximo Passo)"]
+      </pre>
+    </div>
+
+    <!-- Bloco 1 -->
+    <section class="section-card">
+      <div class="section-header">
+        <span class="badge-number">1</span>
+        <h2 class="section-title">Abertura & O Grande Acordo de Papéis</h2>
+      </div>
+      <div class="section-objective">
+        <strong>Objetivo Decisório:</strong> Estabelecer o enquadramento inicial. Você não está oferecendo um "trabalho operacional de freelancer", mas assumindo a ponta de distribuição e crescimento em troca de autonomia total.
+      </div>
+
+      <div class="callout">
+        <div class="callout-title gold">A Tese Central da Parceria</div>
+        <div class="callout-text">
+          Você assume toda a estratégia de distribuição, marketing, tecnologia e captação do GFB com liberdade de execução. Em troca, entrega a Taiilan e sua equipe ferramentas para tirar o peso operacional e deixá-los focados 100% no refino técnico da dança.
+        </div>
+      </div>
+
+      <div class="speech-box">
+        <div class="speech-label">🎙️ O que falar para Taiilan</div>
+        <div class="speech-content">
+          <p>“Taiilan, obrigado por esse momento. O motivo dessa nossa conversa não é te apresentar uma lista de tarefas avulsas ou te vender um serviço pontual de internet. O que estou te propondo aqui é uma virada de chave para os próximos anos do Forró do Bom.”</p>
+          <p>“Hoje, você e sua equipe carregam nos ombros um trabalho de 11 anos que já formou mais de 3 mil pessoas e é referência em Feira de Santana. Mas existe um gargalo clássico de quem é apaixonado pela técnica: você acaba tendo que ser professor, diretor, cobrador de Pix, respondedor de WhatsApp, organizador de eventos e administrador.”</p>
+          <p>“A minha proposta para você é muito simples na essência: <strong>eu quero que você me dê total autonomia e liberdade para pensar e executar a estratégia de distribuição, captação e negócios do GFB, enquanto eu entrego para você e seus professores as ferramentas e a infraestrutura tecnológica para vocês focarem única e exclusivamente no refino técnico da dança e da pedagogia.</strong>”</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bloco 2 -->
+    <section class="section-card">
+      <div class="section-header">
+        <span class="badge-number">2</span>
+        <h2 class="section-title">Diagnóstico da Realidade: O Risco da "Qualidade Isolada"</h2>
+      </div>
+      <div class="section-objective">
+        <strong>Objetivo Decisório:</strong> Conscientizar Taiilan sobre a fragilidade de depender unicamente da qualidade da dança sem processos formais de atração e retenção.
+      </div>
+
+      <div class="card-grid">
+        <div class="feature-card">
+          <h4>⚠️ A Armadilha Atual</h4>
+          <p>Achar que a boa reputação e a dança técnica por si sós garantem o futuro. A concorrência com o tempo se qualifica, copia passos e pode engolir o mercado se souber vender melhor.</p>
+        </div>
+        <div class="feature-card">
+          <h4>🛡️ O Verdadeiro Fosso Defensivo (Moat)</h4>
+          <p>Unir a melhor dança ao melhor ecossistema: acolhimento rápido, presença digital forte, rotina de alunos estruturada e percepção de profissionalismo inalcançável por escolas amadoras.</p>
+        </div>
+      </div>
+
+      <div class="speech-box">
+        <div class="speech-label">🎙️ O que falar para Taiilan</div>
+        <div class="speech-content">
+          <p>“Hoje, o cartão de visita do Forró do Bom é a qualidade técnica da dança. Quem vê você, Sthefanie, Luinne, Karine e Thiago dançando sabe da excelência do trabalho. Só que existe uma dura realidade de mercado que a gente precisa encarar de frente:”</p>
+          <p>“<strong>Qualidade técnica isolada não é barreira de entrada duradoura.</strong>”</p>
+          <p>“Com o tempo, outras escolas e professores surgem, observam o que você faz, se qualificam ou trazem uma comunicação mais agressiva. Se o GFB depender apenas do boca a boca e da memória de ‘ser o mais tradicional’, a concorrência começa a morder fatias do mercado — não porque dançam melhor, mas porque têm processos melhores de captação e venda.”</p>
+          <p>“O que nos torna imbatíveis não é apenas dançar melhor: é somar a melhor dança ao <strong>melhor ecossistema de acolhimento, marca, acompanhamento e tecnologia da Bahia.</strong>”</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bloco 3 -->
+    <section class="section-card">
+      <div class="section-header">
+        <span class="badge-number">3</span>
+        <h2 class="section-title">Tese de Precificação & Revenue-Centric Design</h2>
+      </div>
+      <div class="section-objective">
+        <strong>Objetivo Decisório:</strong> Quebrar o medo de cobrar, desmistificar o "mercado do desconto" e justificar o aumento do ticket médio do GFB.
+      </div>
+
+      <div class="callout">
+        <div class="callout-title gold">A Máxima Estratégica (Dan Kennedy / Alex Hormozi)</div>
+        <div class="callout-text" style="font-size: 16px; color: #fff; font-weight: 600;">
+          “Não há nenhuma vantagem estratégica ou comercial em ser o segundo mais barato da cidade. Mas há todas as vantagens em ser o mais caro (e entregar 10 vezes mais valor).”
+        </div>
+      </div>
+
+      <div class="speech-box">
+        <div class="speech-label">🎙️ O que falar para Taiilan</div>
+        <div class="speech-content">
+          <p>“Taiilan, tem um princípio clássico de negócios que diz: <em>não existe nenhuma vantagem em ser o mais barato ou o segundo mais barato do mercado</em>. Quando uma escola de dança briga por preço baixo, ela atrai o aluno descompromissado que cancela na primeira chuva, fica sem margem de caixa para pagar bem os professores e você precisa dar 20 horas de aula por semana até a exaustão para ter retorno.”</p>
+          <p>“Agora, quando a gente se posiciona no topo, cobrando um ticket que remunera o valor real da escola, o aluno dá muito mais valor, a dedicação aumenta e nós criamos caixa para investir em grandes eventos e estrutura.”</p>
+          <p>“Só que ninguém consegue cobrar mais caro simplesmente ‘aumentando a tabela no susto’. <strong>As pessoas só pagam mais felizes quando sentem que estão recebendo 10 vezes mais valor do que o dinheiro que sai do bolso delas.</strong> E é exatamente essa infraestrutura que eu montei para o GFB.”</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bloco 4 -->
+    <section class="section-card">
+      <div class="section-header">
+        <span class="badge-number">4</span>
+        <h2 class="section-title">Demonstração Prática do Ecossistema GFB</h2>
+      </div>
+      <div class="section-objective">
+        <strong>Momento de Demonstração:</strong> Abra o notebook ou tablet no protótipo navegável local (<code>http://localhost:3001/</code> e <code>http://localhost:3001/gestao</code>) para mostrar o produto funcionando.
+      </div>
+
+      <!-- 4.1 -->
+      <h3 style="color: var(--primary); font-size: 17px; margin-top: 24px; margin-bottom: 10px;">4.1 Captação: Landing Page + Google Meu Negócio</h3>
+      <div class="speech-box">
+        <div class="speech-label">🎙️ O que falar</div>
+        <div class="speech-content">
+          <p>“Vamos começar pela porta de entrada. Se alguém em Feira pesquisa hoje no Google ‘aula de forró em Feira de Santana’, essa pessoa tem que cair de cara no GFB. O Google Meu Negócio é o canal de maior intenção de compra que existe: quem pesquisa ali quer se matricular agora.”</p>
+          <p>“Construímos uma Landing Page ultra-rápida no celular, focada em quebrar os três medos universais de quem quer dançar: <em>‘Acho que não levo jeito’</em>, <em>‘Tenho vergonha de errar’</em> e <em>‘Travo quando o forró começa’</em>.”</p>
+          <p>“Criamos o funil de baixo atrito: o aluno experimenta a primeira aula por R$ 39 e, ao decidir continuar, esse valor é abatido no plano Essencial (R$ 79). A barreira cai, a sala enche e temos trackeamento de ponta a ponta para saber de onde veio cada centavo.”</p>
+        </div>
+      </div>
+
+      <!-- 4.2 -->
+      <h3 style="color: var(--primary); font-size: 17px; margin-top: 24px; margin-bottom: 10px;">4.2 A Realidade do Instagram</h3>
+      <div class="speech-box">
+        <div class="speech-label">🎙️ O que falar</div>
+        <div class="speech-content">
+          <p>“Geralmente, quando alguém quer te oferecer ajuda, a primeira coisa que fala é ‘vamos fazer posts no Instagram’. O Instagram é fundamental, mas ele não sustenta a casa sozinho. A jornada do cliente passa por várias frentes: ele vê um vídeo no Instagram, pesquisa no Google, ouve de um amigo, acessa o site e só aí clica no WhatsApp. O nosso trabalho nas redes sociais será estratégico para alimentar essa engrenagem, não apenas gerar curtidas vazias.”</p>
+        </div>
+      </div>
+
+      <!-- 4.3 -->
+      <h3 style="color: var(--primary); font-size: 17px; margin-top: 24px; margin-bottom: 10px;">4.3 Plataforma de Gestão (Demonstre na Tela)</h3>
+      <div class="card-grid">
+        <div class="feature-card">
+          <h4>📱 Chamada em 60 Segundos</h4>
+          <p>O professor abre o celular no fim da aula e marca presença, falta ou justificativa com um toque. Rápido, sem papel e sem desculpas.</p>
+        </div>
+        <div class="feature-card">
+          <h4>🚨 Alerta Anti-Cancelamento</h4>
+          <p>Se o aluno falta duas aulas seguidas, a plataforma gera uma tarefa para contato humano e caloroso de acolhimento via WhatsApp antes que ele desista.</p>
+        </div>
+        <div class="feature-card">
+          <h4>💳 Fim do "Manda o Comprovante"</h4>
+          <p>Cobrança com QR Code Pix com confirmação direta. Acaba o constrangimento de ficar cobrando aluno e conferindo print manual.</p>
+        </div>
+        <div class="feature-card">
+          <h4>📊 Visibilidade de Lucro por Turma</h4>
+          <p>Mapeamento do custo operacional real de cada turma para saber exatamente a margem líquida e o momento de expandir.</p>
+        </div>
+      </div>
+
+      <div class="speech-box">
+        <div class="speech-label">🎙️ O que falar</div>
+        <div class="speech-content">
+          <p>“Taiilan, veja essa tela: isso aqui já está pronto e rodando. Quanto tempo vocês perdem hoje conferindo comprovante de Pix no WhatsApp? Quantos alunos faltam semanas seguidas e somem sem ninguém mandar uma mensagem perguntando se está tudo bem?”</p>
+          <p>“Com esse sistema, o professor faz a chamada em menos de um minuto no celular. Se alguém falta duas vezes seguidas, a tela avisa na hora para você acolher. Nós reduzimos o retrabalho braçal para você ter tempo de planejar eventos, workshops e dançar.”</p>
+        </div>
+      </div>
+
+      <!-- 4.4 -->
+      <h3 style="color: var(--primary); font-size: 17px; margin-top: 24px; margin-bottom: 10px;">4.4 Plataforma do Aluno & Quebra da Objeção do "Material Didático"</h3>
+      <div class="speech-box">
+        <div class="speech-label">🎙️ O que falar para quebrar a objeção</div>
+        <div class="speech-content">
+          <p>“Hoje o que acontece? Toda semana vocês gravam os passos no final da aula e jogam no grupo de WhatsApp. O vídeo se perde no celular do aluno, ocupa espaço na memória dele e, todo novo semestre, vocês têm o trabalho de gravar EXATAMENTE a mesma coisa de novo.”</p>
+          <p>“Com a Área do Aluno, criamos uma biblioteca curricular oficial com os movimentos por nível (iniciante, básico, intermediário). O aluno tem um portal de estudos para praticar em casa entre as aulas. Isso agrega um valor absurdo ao plano.”</p>
+          <p>“E eu sei o que pode te dar um frio na barriga: <em>‘Mas Antonio, e se esse material vazar na internet?’</em>”</p>
+          <p>“Taiilan, com toda sinceridade: <strong>no grupo de WhatsApp o vídeo já vaza com um clique para qualquer um</strong>. Ninguém copia a alma do Forró do Bom por causa de um vídeo de passo básico. A internet está cheia de tutorial de forró no YouTube. O que o aluno compra é a sua correção ao vivo, o calor da turma, o ambiente do GFB e a convivência. Na plataforma fechada com nossa marca, o material ganha status de curso premium e consolida o método da sua escola.”</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bloco 5 -->
+    <section class="section-card">
+      <div class="section-header">
+        <span class="badge-number">5</span>
+        <h2 class="section-title">Pilares Estruturais: Monitoria, Exames & Cultura</h2>
+      </div>
+
+      <h3 style="color: var(--primary); font-size: 17px; margin-bottom: 12px;">5.1 Programa de Monitoria (Diagnóstico & Alinhamento)</h3>
+      <ul class="checklist">
+        <li>
+          <span class="checklist-icon">❓</span>
+          <div><strong>Pergunta para Taiilan:</strong> Como é o acordo hoje com os monitores? Eles são isentos de mensalidade ou têm algum benefício em workshops e eventos?</div>
+        </li>
+        <li>
+          <span class="checklist-icon">❓</span>
+          <div><strong>Pergunta para Taiilan:</strong> Qual o nível de exigência de presença e pontualidade hoje? Eles têm turmas fixas atribuídas?</div>
+        </li>
+      </ul>
+      <div class="callout">
+        <div class="callout-title blue">Solução Proposta na Plataforma</div>
+        <div class="callout-text">
+          Criar o perfil oficial de "Monitor" no sistema: eles têm acesso apenas às turmas em que atuam para lançar observações de desenvolvimento dos iniciantes, tornando-se o braço de acolhimento do GFB sem acessar dados financeiros da escola.
+        </div>
+      </div>
+
+      <h3 style="color: var(--primary); font-size: 17px; margin-top: 28px; margin-bottom: 12px;">5.2 Exames de Níveis como Grandes Rituais de Passagem</h3>
+      <div class="speech-box">
+        <div class="speech-label">🎙️ O que falar</div>
+        <div class="speech-content">
+          <p>“Na dança a dois, o maior motor de retenção de um aluno é a sensação clara de evolução. Se o aluno sobe de nível sem um marco formal, o encanto diminui.”</p>
+          <p>“Precisamos transformar os Exames de Níveis em <strong>eventos memoráveis da escola</strong>: com banca de avaliação, cerimônia de entrega, certificado assinado por você e lembranças adequadas (como um pin/broche ou faixa simbólica do nível). Isso gera orgulho de pertencer, inunda o Instagram de fotos da conquista e faz o aluno querer continuar no próximo ciclo para alcançar a próxima graduação.”</p>
+        </div>
+      </div>
+
+      <h3 style="color: var(--primary); font-size: 17px; margin-top: 28px; margin-bottom: 12px;">5.3 Formalização, CNPJ & Leis de Incentivo (Oceano Azul)</h3>
+      <div class="speech-box">
+        <div class="speech-label">🎙️ O que falar</div>
+        <div class="speech-content">
+          <p>“Tem um ponto que NINGUÉM no mercado de forró em Feira de Santana está enxergando: o Forró do Bom não é só uma escola de dança comercial; ele é patrimônio cultural e tem 11 anos de história com raízes na UEFS.”</p>
+          <p>“Ao formalizarmos o CNPJ e estruturarmos o projeto, nós nos tornamos aptos a captar recursos em <strong>Leis de Incentivo à Cultura</strong> (Paulo Gustavo, Aldir Blanc, editais do município e da Bahia, e Rouanet). Isso abre portas para verbas de dezenas ou centenas de milhares de reais para circular com a companhia de dança, oferecer oficinas em escolas públicas e realizar festivais sem tirar um centavo do caixa dos alunos.”</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bloco 6 -->
+    <section class="section-card">
+      <div class="section-header">
+        <span class="badge-number">6</span>
+        <h2 class="section-title">Cronograma: O Plano de 2 a 4 Meses</h2>
+      </div>
+      <div class="section-objective">
+        <strong>Transição Gradual:</strong> Deixar claro que a mudança não será caótica nem exigirá horas infinitas de reunião. É uma implantação faseada.
+      </div>
+
+      <div class="card-grid">
+        <div class="feature-card">
+          <span class="tag tag-gold">Mês 1 · Fundação</span>
+          <h4>Estrutura no Ar</h4>
+          <p>Landing page no ar, Google Meu Negócio otimizado e início da rotina de chamada mobile em sala de aula.</p>
+        </div>
+        <div class="feature-card">
+          <span class="tag tag-gold">Mês 2 · Sistematização</span>
+          <h4>Processos & Vídeos</h4>
+          <p>Gravação da biblioteca de fundamentos na Área do Aluno, regras da monitoria e automação financeira Pix.</p>
+        </div>
+        <div class="feature-card">
+          <span class="tag tag-gold">Meses 3 a 4 · Nova Cara</span>
+          <h4>Escala & Reconhecimento</h4>
+          <p>Lançamento oficial da nova fase comercial, primeiro exame de nível no novo padrão cerimonial e abertura de CNPJ para editais.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bloco 7 -->
+    <section class="section-card" id="bloco-proposta">
+      <div class="section-header">
+        <span class="badge-number">7</span>
+        <h2 class="section-title">O Pacote de Entregas & A Proposta Comercial</h2>
+      </div>
+      <div class="section-objective">
+        <strong>Momento Decisório:</strong> Explicitar as condições e oferecer 3 opções claras de modelo comercial para Taiilan escolher.
+      </div>
+
+      <div class="callout">
+        <div class="callout-title green">As Minhas Condições Inegociáveis</div>
+        <div class="callout-text">
+          <ol style="padding-left: 20px; line-height: 1.8;">
+            <li><strong>Autonomia e Liberdade Estratégica:</strong> Poder tomar as decisões de comunicação, canais, tráfego, design e conversão sem travas burocráticas.</li>
+            <li><strong>Compromisso Operacional da Equipe:</strong> Professores e monitores devem preencher a chamada no celular a cada aula (menos de 60 segundos) para manter os dados vivos.</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="tier-grid">
+        <!-- Opção A -->
+        <div class="tier-card featured">
+          <span class="tier-badge">Recomendado</span>
+          <div class="tier-title">Opção A: Parceria de Crescimento</div>
+          <div class="tier-desc">Equity / Revenue-Share sobre o crescimento gerado.</div>
+          <ul class="tier-list">
+            <li>Risco zero para o caixa atual do GFB</li>
+            <li>Percentual acordado sobre o aumento real de faturamento (acima da base atual de ~82 alunos)</li>
+            <li>Antonio assume total responsabilidade pela tecnologia e captação</li>
+            <li>Alinhamento de longo prazo: só ganho quando a escola lucra mais</li>
+          </ul>
+        </div>
+
+        <!-- Opção B -->
+        <div class="tier-card">
+          <div class="tier-title">Opção B: Híbrido (Fixo + Performance)</div>
+          <div class="tier-desc">Mensalidade básica de manutenção + bônus por matrícula.</div>
+          <ul class="tier-list">
+            <li>Taxa mensal fixa para sustentação e suporte técnico</li>
+            <li>Bonificação variável por cada novo aluno matriculado através do ecossistema</li>
+            <li>Previsibilidade de custos para a escola com forte incentivo de resultados</li>
+          </ul>
+        </div>
+
+        <!-- Opção C -->
+        <div class="tier-card">
+          <div class="tier-title">Opção C: Licenciamento Fixo</div>
+          <div class="tier-desc">Locação mensal do software e suporte da infraestrutura.</div>
+          <ul class="tier-list">
+            <li>Valor mensal fixo para uso da plataforma de Gestão e Área do Aluno</li>
+            <li>Acompanhamento pontual de métricas em reuniões mensais</li>
+            <li>Escola fica livre para gerenciar suas próprias campanhas</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bloco 8 -->
+    <section class="section-card">
+      <div class="section-header">
+        <span class="badge-number">8</span>
+        <h2 class="section-title">Fechamento Consultivo & Próximos Passos</h2>
+      </div>
+
+      <div class="speech-box">
+        <div class="speech-label">🎙️ Fala de Fechamento (Antonio)</div>
+        <div class="speech-content">
+          <p>“Taiilan, tudo o que eu te mostrei aqui foi desenhado pensando na história e no futuro do Forró do Bom. Não é um projeto teórico: a tecnologia já está construída e pronta para rodar.”</p>
+          <p>“Para darmos esse passo, só precisamos de três alinhamentos práticos hoje:”</p>
+          <ol style="padding-left: 20px; margin: 12px 0;">
+            <li>“Definir qual modelo de parceria (Opção A, B ou C) faz mais sentido para o seu momento de gestão.”</li>
+            <li>“Marcarmos uma sessão rápida de 20 minutos com a equipe de professores para eu mostrar a tela de chamada e tirar as dúvidas deles no celular.”</li>
+            <li>“Sentarmos para bater o martelo sobre as regras de monitoria e a data do próximo exame de nível.”</li>
+          </ol>
+          <p>“<strong>Se estiver de acordo, qual dessas opções de parceria te deixa mais confortável para começarmos a rodar a fase 1 já nesta próxima semana?</strong>”</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>
