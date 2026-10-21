@@ -19,13 +19,15 @@ export function shouldRestoreAtmospherePosition(
 
 export function AtmosphereGallery() {
   const [active, setActive] = useState(0);
-  const [autoplay, setAutoplay] = useState(true);
+  const [autoplayCycle, setAutoplayCycle] = useState(0);
   const [inView, setInView] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const pointerStart = useRef<number | null>(null);
+  const activeRef = useRef(0);
+  const moveToSlideRef = useRef<((index: number, immediate?: boolean) => void) | null>(null);
   const previousOrientationRef = useRef<AtmosphereOrientation>(
     atmosphereFrames[0].orientation,
   );
@@ -33,7 +35,7 @@ export function AtmosphereGallery() {
   const loopAsset = visualAssets[loopFrame.asset];
 
   function select(index: number, fromInteraction = true) {
-    if (fromInteraction) setAutoplay(false);
+    if (fromInteraction) setAutoplayCycle((cycle) => cycle + 1);
     setActive((index + atmosphereFrames.length) % atmosphereFrames.length);
   }
 
@@ -61,12 +63,12 @@ export function AtmosphereGallery() {
   }, []);
 
   useEffect(() => {
-    if (!autoplay || !inView || reducedMotion) return;
+    if (!inView || reducedMotion) return;
     const timer = window.setInterval(() => {
       setActive((current) => (current + 1) % atmosphereFrames.length);
     }, 5200);
     return () => window.clearInterval(timer);
-  }, [autoplay, inView, reducedMotion]);
+  }, [autoplayCycle, inView, reducedMotion]);
 
   useEffect(() => {
     const nextOrientation = atmosphereFrames[active].orientation;
@@ -127,103 +129,130 @@ export function AtmosphereGallery() {
   }, [reducedMotion]);
 
   useEffect(() => {
-      if (!inView) return;
-      const track = trackRef.current;
-      const viewport = viewportRef.current;
-      if (!track || !viewport) return;
-      let cancelled = false;
-      let animationContext: { revert: () => void } | undefined;
-      let resizeObserver: ResizeObserver | undefined;
+    activeRef.current = active;
+    moveToSlideRef.current?.(active);
+  }, [active]);
 
-      void import("gsap").then(({ default: gsap }) => {
+  useEffect(() => {
+    if (!inView) return;
+    const track = trackRef.current;
+    const viewport = viewportRef.current;
+    if (!track || !viewport) return;
+
+    let cancelled = false;
+    let resizeObserver: ResizeObserver | undefined;
+    let stopAnimations = () => undefined;
+
+    void import("gsap").then(({ default: gsap }) => {
       if (cancelled) return;
-      animationContext = gsap.context(() => {
-      const slides = gsap.utils.toArray<HTMLElement>("[data-atmosphere-slide]");
-      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      const getTargetX = () => {
-        const activeSlide = slides[active];
-        if (!activeSlide) return 0;
+      const slides = Array.from(
+        track.querySelectorAll<HTMLElement>("[data-atmosphere-slide]"),
+      );
+      const media = Array.from(
+        track.querySelectorAll<HTMLElement>("[data-atmosphere-media]"),
+      );
+      const captions = slides
+        .map((slide) => slide.querySelector<HTMLElement>("figcaption"))
+        .filter((caption): caption is HTMLElement => caption !== null);
+      let observedSlide: HTMLElement | undefined;
+
+      const getTargetX = (index: number) => {
+        const slide = slides[index];
+        if (!slide) return 0;
         const centeredOffset =
-          activeSlide.dataset.mediaOrientation === "portrait"
-            ? Math.max(0, (viewport.clientWidth - activeSlide.offsetWidth) / 2)
+          slide.dataset.mediaOrientation === "portrait"
+            ? Math.max(0, (viewport.clientWidth - slide.offsetWidth) / 2)
             : 0;
-        return -activeSlide.offsetLeft + centeredOffset;
+        return -slide.offsetLeft + centeredOffset;
       };
 
-      const activeSlide = slides[active];
-      const activeHeight = activeSlide?.scrollHeight ?? 0;
+      const moveToSlide = (index: number, immediate = false) => {
+        const slide = slides[index];
+        if (!slide) return;
 
-      const timeline = gsap.timeline({
-        defaults: {
-          duration: reducedMotion ? 0.16 : 0.56,
-          ease: reducedMotion ? "power1.out" : "power3.inOut",
-          overwrite: "auto",
-        },
-      });
+        if (resizeObserver && observedSlide !== slide) {
+          resizeObserver.disconnect();
+          resizeObserver.observe(slide);
+          observedSlide = slide;
+        }
 
-      timeline.to(track, { x: getTargetX }, 0);
-
-      if (activeHeight > 0) {
-        timeline.to(
-          viewport,
-          { height: activeHeight, duration: reducedMotion ? 0.16 : 0.56 },
-          0,
-        );
-      }
-
-      timeline
-        .to(
-          slides,
-          {
-            autoAlpha: (index) => (index === active ? 1 : 0.48),
-            scale: (index) => (index === active || reducedMotion ? 1 : 0.92),
-            rotation: (index) =>
-              index === active || reducedMotion ? 0 : index < active ? -1.2 : 1.2,
-            stagger: reducedMotion ? 0 : 0.035,
+        const duration = immediate ? 0 : reducedMotion ? 0.16 : 0.56;
+        const timeline = gsap.timeline({
+          defaults: {
+            duration,
+            ease: reducedMotion ? "power1.out" : "power3.inOut",
+            overwrite: "auto",
           },
-          0,
-        )
-        .to(
-          "[data-atmosphere-media]",
-          {
-            scale: (index) => (index === active || reducedMotion ? 1.035 : 1.1),
-          },
-          0,
-        );
+        });
 
-      const caption = slides[active]?.querySelector("figcaption");
-      if (caption) {
-        timeline.fromTo(
-          caption,
-          { y: reducedMotion ? 0 : 12, autoAlpha: 0.45 },
-          {
-            y: 0,
-            autoAlpha: 1,
-            duration: reducedMotion ? 0.16 : 0.46,
-            ease: "power3.out",
-          },
-          reducedMotion ? 0 : 0.34,
-        );
-      }
+        timeline.to(track, { x: getTargetX(index) }, 0);
+        if (slide.scrollHeight > 0) {
+          timeline.to(viewport, { height: slide.scrollHeight }, 0);
+        }
+        timeline
+          .to(
+            slides,
+            {
+              autoAlpha: (slideIndex) => (slideIndex === index ? 1 : 0.48),
+              scale: (slideIndex) =>
+                slideIndex === index || reducedMotion ? 1 : 0.92,
+              rotation: (slideIndex) =>
+                slideIndex === index || reducedMotion
+                  ? 0
+                  : slideIndex < index
+                    ? -1.2
+                    : 1.2,
+              stagger: immediate || reducedMotion ? 0 : 0.035,
+            },
+            0,
+          )
+          .to(
+            media,
+            {
+              scale: (mediaIndex) =>
+                mediaIndex === index || reducedMotion ? 1.035 : 1.1,
+            },
+            0,
+          );
+
+        const caption = captions[index];
+        if (caption && !immediate) {
+          timeline.fromTo(
+            caption,
+            { y: reducedMotion ? 0 : 12, autoAlpha: 0.45 },
+            {
+              y: 0,
+              autoAlpha: 1,
+              duration: reducedMotion ? 0.16 : 0.46,
+              ease: "power3.out",
+            },
+            reducedMotion ? 0 : 0.34,
+          );
+        }
+      };
+
+      moveToSlideRef.current = moveToSlide;
+      stopAnimations = () => {
+        gsap.killTweensOf([track, viewport, ...slides, ...media, ...captions]);
+      };
 
       if (typeof ResizeObserver !== "undefined") {
         resizeObserver = new ResizeObserver(() => {
-          gsap.set(track, { x: getTargetX() });
-          const nextHeight = slides[active]?.scrollHeight;
-          if (nextHeight) gsap.set(viewport, { height: nextHeight });
+          moveToSlide(activeRef.current, true);
         });
-        if (activeSlide) resizeObserver.observe(activeSlide);
       }
-      }, sectionRef);
-      });
 
-      return () => {
-        cancelled = true;
-        resizeObserver?.disconnect();
-        animationContext?.revert();
-      };
-  }, [active, inView]);
+      moveToSlide(activeRef.current, true);
+    });
+
+    return () => {
+      cancelled = true;
+      resizeObserver?.disconnect();
+      moveToSlideRef.current = null;
+      stopAnimations();
+    };
+  }, [inView, reducedMotion]);
 
   return (
     <section
@@ -261,7 +290,6 @@ export function AtmosphereGallery() {
           if (Math.abs(distance) < 45) return;
           select(active + (distance < 0 ? 1 : -1));
         }}
-        onFocusCapture={() => setAutoplay(false)}
       >
         <div ref={viewportRef} className={styles.atmosphereViewport}>
           <div ref={trackRef} className={styles.atmosphereTrack}>
@@ -284,7 +312,6 @@ export function AtmosphereGallery() {
                   >
                     {frame.kind === "video" ? (
                       <video
-                        key={shouldLoadVideo ? "active" : "idle"}
                         className={styles.atmosphereVideo}
                         poster={inView ? frame.poster : undefined}
                         muted
