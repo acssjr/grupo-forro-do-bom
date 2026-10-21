@@ -16,8 +16,8 @@
 }
 
 .legalHeader img {
-  width: min(10rem, 42vw);
-  height: 3.4rem;
+  width: min(7.5rem, 34vw);
+  height: 3.75rem;
   object-fit: contain;
   object-position: left center;
 }

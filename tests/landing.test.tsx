@@ -411,7 +411,9 @@ describe("LandingPage", () => {
       "Grupo Forró do Bom",
     );
     expect(css).toMatch(/\.footerLogo\s*\{[\s\S]*background:\s*var\(--sand\)/);
-    expect(css).toMatch(/\.footerLogo\s*\{[\s\S]*margin-inline-start:\s*-1\.75rem/);
+    expect(css).toMatch(
+      /\.footerLogo\s*\{[\s\S]*mask:\s*url\("\/brand\/gfb-monogram\.svg"\)/,
+    );
     expect(css).toMatch(/\.footerBrand p\s*\{[\s\S]*color:\s*var\(--sand\)/);
   });
 
@@ -556,11 +558,18 @@ describe("LandingPage", () => {
     expect(carousel?.querySelectorAll("source")).toHaveLength(1);
   });
 
-  it("keeps the horizontal header logo free of the hidden export background", () => {
+  it("uses lightweight transparent vectors for the new brand applications", () => {
     const logo = readFileSync("public/brand/gfb-logo.svg", "utf8");
+    const monogram = readFileSync("public/brand/gfb-monogram.svg", "utf8");
 
     expect(logo).not.toContain("path:first-of-type{display:none}");
     expect(logo).not.toContain("<style>");
+    expect(logo).not.toContain("<image");
+    expect(monogram).not.toContain("<image");
+    expect(logo).toContain('viewBox="0 0 940 624"');
+    expect(monogram).toContain('viewBox="0 0 940 624"');
+    expect(statSync("public/brand/gfb-logo.svg").size).toBeLessThan(10 * 1024);
+    expect(statSync("public/brand/gfb-monogram.svg").size).toBeLessThan(10 * 1024);
   });
 
   it("ships a lightweight conventional favicon instead of the full monogram", () => {

@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "optimize:svg": "svgo --config svgo.config.mjs public/brand/gfb-monogram.svg public/brand/gfb-logo.svg",
+    "optimize:svg": "svgo --config svgo.config.mjs public/brand/gfb-monogram.svg public/brand/gfb-logo.svg public/brand/gfb-logo-dark.svg",
     "test": "vitest run",
     "test:watch": "vitest"
   },

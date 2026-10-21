@@ -23,9 +23,9 @@ export function SiteHeader() {
         <Image
           src="/brand/gfb-logo.svg"
           alt="Grupo Forró do Bom"
-          width={1976}
-          height={796}
-          priority
+          width={940}
+          height={624}
+          preload
         />
       </a>
 

@@ -16,8 +16,8 @@ export function FinalCta() {
         className={styles.finalMonogram}
         src="/brand/gfb-monogram.svg"
         alt=""
-        width={1331}
-        height={1080}
+        width={940}
+        height={624}
         aria-hidden="true"
         data-final-monogram
       />

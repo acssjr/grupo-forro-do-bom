@@ -15,7 +15,7 @@ export function LegalPage({ kicker, title, summary, children }: LegalPageProps) 
     <div className={styles.legalShell}>
       <header className={styles.legalHeader}>
         <Link href="/" aria-label="Voltar para a página inicial do Grupo Forró do Bom">
-          <Image src="/brand/gfb-logo.svg" alt="Grupo Forró do Bom" width={1976} height={796} />
+          <Image src="/brand/gfb-logo.svg" alt="Grupo Forró do Bom" width={940} height={624} />
         </Link>
         <Link className={styles.backLink} href="/">
           Voltar para a landing

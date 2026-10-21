@@ -23,7 +23,7 @@ export function ProofSection() {
         </p>
       </div>
       <span className={styles.proofOrbit} aria-hidden="true" data-proof-orbit>
-        <Image src="/brand/gfb-monogram.svg" alt="" width={1331} height={1080} />
+        <Image src="/brand/gfb-logo.svg" alt="" width={940} height={624} />
       </span>
     </section>
   );

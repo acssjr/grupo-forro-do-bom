@@ -12,7 +12,7 @@ export default function Home() {
         name: siteConfig.name,
         alternateName: siteConfig.shortName,
         url: siteConfig.siteUrl,
-        logo: `${siteConfig.siteUrl}/brand/gfb-logo.png`,
+        logo: `${siteConfig.siteUrl}/brand/gfb-logo-dark.png`,
         description:
           "Escola de forró em Feira de Santana com turmas progressivas para iniciantes e nivelamento para quem já dança.",
         address: {

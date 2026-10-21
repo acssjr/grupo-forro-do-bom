@@ -32,9 +32,9 @@ export const metadata: Metadata = {
     description,
     images: [
       {
-        url: "/brand/gfb-logo.png",
-        width: 1976,
-        height: 796,
+        url: "/brand/gfb-logo-dark.png",
+        width: 940,
+        height: 624,
         alt: "Logotipo do Grupo Forró do Bom",
       },
     ],
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["/brand/gfb-logo.png"],
+    images: ["/brand/gfb-logo-dark.png"],
   },
   robots: { index: true, follow: true },
 };
