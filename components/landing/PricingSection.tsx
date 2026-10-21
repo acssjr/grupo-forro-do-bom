@@ -59,6 +59,15 @@ export function PricingSection() {
                 </li>
               ))}
             </ul>
+            {plan.platform ? (
+              <details className={styles.planDisclosure}>
+                <summary aria-label="Entenda o que está incluído na plataforma do aluno">
+                  <span>{plan.platform.prompt}</span>
+                  <span aria-hidden="true">?</span>
+                </summary>
+                <p>{plan.platform.description}</p>
+              </details>
+            ) : null}
             {plan.note ? <p className={styles.planNote}>{plan.note}</p> : null}
             <WhatsAppLink
               className={plan.recommended ? styles.primaryButton : styles.outlineButton}

@@ -1,4 +1,5 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
+import { readFileSync } from "node:fs";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { AtmosphereGallery } from "@/components/landing/AtmosphereGallery";
 
@@ -71,5 +72,22 @@ describe("AtmosphereGallery", () => {
     const videoAfter = container.querySelectorAll("video")[0];
 
     expect(videoAfter).toBe(videoBefore);
+  });
+
+  it("moves slides with an interruptible CSS transition instead of resetting the animation", () => {
+    const source = readFileSync("components/landing/AtmosphereGallery.tsx", "utf8");
+    const css = readFileSync("components/landing/Landing.module.css", "utf8");
+
+    expect(source).not.toContain('import("gsap")');
+    expect(source).not.toContain("ResizeObserver");
+    expect(css).toMatch(
+      /\.atmosphereTrack\s*\{[\s\S]*transition:\s*transform 280ms var\(--ease-in-out\)/,
+    );
+    expect(css).toMatch(
+      /\.atmosphereSlide\s*\{[\s\S]*transition:[\s\S]*opacity 180ms var\(--ease-out\)[\s\S]*transform 280ms var\(--ease-in-out\)/,
+    );
+    expect(css).toMatch(
+      /@media \(prefers-reduced-motion: reduce\)[\s\S]*\.atmosphereTrack\s*\{[\s\S]*transition:\s*none/,
+    );
   });
 });

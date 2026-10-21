@@ -262,6 +262,16 @@ describe("LandingPage", () => {
     expect(recommended).toHaveTextContent("Essencial GFB");
     expect(recommended).toHaveTextContent("O MAIS ESCOLHIDO");
     expect(recommended).toHaveTextContent("Acompanhamento da evolução no ritmo da turma");
+    expect(recommended).toHaveTextContent("Acesso à plataforma do aluno");
+    expect(recommended).toHaveTextContent("O que está incluído?");
+    expect(recommended).toHaveTextContent(
+      "Vídeos dos passos trabalhados em aula, histórico de observações dos professores e avisos da turma",
+    );
+    expect(recommended?.querySelector("details")).toBeInTheDocument();
+    expect(recommended?.querySelector("summary")).toHaveAttribute(
+      "aria-label",
+      "Entenda o que está incluído na plataforma do aluno",
+    );
     expect(recommended).not.toHaveAttribute("data-mobile-priority");
 
     const cards = [...container.querySelectorAll("[data-price-card]")];

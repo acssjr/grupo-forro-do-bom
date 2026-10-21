@@ -950,15 +950,30 @@
   display: flex;
   align-items: flex-start;
   column-gap: clamp(0.85rem, 2vw, 1.5rem);
+  transition: transform 280ms var(--ease-in-out);
   will-change: transform;
+}
+
+.atmosphereTrack[data-resizing="true"] {
+  transition: none;
 }
 
 .atmosphereSlide {
   flex: 0 0 min(82vw, 64rem);
   min-width: 0;
   margin: 0;
+  opacity: 0.48;
+  transform: scale(0.92);
   transform-origin: center center;
+  transition:
+    opacity 180ms var(--ease-out),
+    transform 280ms var(--ease-in-out);
   will-change: transform, opacity;
+}
+
+.atmosphereSlide[data-active="true"] {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .atmosphereSlide[data-media-orientation="portrait"] {
@@ -1001,7 +1016,14 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: scale(1.1);
+  transition: transform 280ms var(--ease-in-out);
   will-change: transform;
+}
+
+.atmosphereSlide[data-active="true"] .atmosphereImageFrame img,
+.atmosphereSlide[data-active="true"] .atmosphereVideo {
+  transform: scale(1.035);
 }
 
 .atmosphereImageFrame[data-media-kind="video"] {
@@ -1040,7 +1062,17 @@
   display: block;
   padding-top: 0.9rem;
   color: var(--brown);
+  opacity: 0.55;
   text-align: center;
+  transform: translateY(0.5rem);
+  transition:
+    opacity 180ms var(--ease-out),
+    transform 280ms var(--ease-out);
+}
+
+.atmosphereSlide[data-active="true"] figcaption {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .atmosphereSlide figcaption strong {
@@ -1543,6 +1575,50 @@
 
 .featuredPlan .planNote {
   color: var(--sand);
+}
+
+.planDisclosure {
+  margin: -0.55rem 0 1.25rem 2rem;
+  color: inherit;
+}
+
+.planDisclosure summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 800;
+  list-style: none;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.planDisclosure summary::-webkit-details-marker {
+  display: none;
+}
+
+.planDisclosure summary > span:last-child {
+  display: grid;
+  width: 1.3rem;
+  height: 1.3rem;
+  place-items: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 0.78rem;
+  text-decoration: none;
+}
+
+.planDisclosure summary:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 0.25rem;
+}
+
+.planDisclosure p {
+  max-width: 34rem;
+  margin-top: 0.7rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
 }
 
 .priceCard > a:last-child {
@@ -3332,6 +3408,18 @@
   .atmosphereImageFrame img,
   .atmosphereVideo {
     will-change: auto;
+  }
+
+  .atmosphereTrack {
+    transition: none;
+  }
+
+  .atmosphereSlide,
+  .atmosphereImageFrame img,
+  .atmosphereVideo,
+  .atmosphereSlide figcaption {
+    transform: none;
+    transition: opacity 160ms var(--ease-out);
   }
 
   .levelingWordStage strong,

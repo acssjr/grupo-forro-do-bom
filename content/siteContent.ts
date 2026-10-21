@@ -205,6 +205,7 @@ export const plans = [
     recommended: false,
     acceleration: false,
     note: "Se continuar, por mais R$ 40 você garante o primeiro mês no Essencial.",
+    platform: null,
   },
   {
     name: "Essencial GFB",
@@ -218,6 +219,7 @@ export const plans = [
       "Conteúdos completos em cada encontro",
       "Professores e monitores acompanhando a turma",
       "Trocas de pares para desenvolver a dança",
+      "Acesso à plataforma do aluno",
     ],
     cta: "Escolher Essencial",
     badge: "O MAIS ESCOLHIDO",
@@ -225,6 +227,11 @@ export const plans = [
     recommended: true,
     acceleration: false,
     note: "A rotina certa para evoluir sem precisar fazer duas aulas por semana.",
+    platform: {
+      prompt: "O que está incluído?",
+      description:
+        "Vídeos dos passos trabalhados em aula, histórico de observações dos professores e avisos da turma.",
+    },
   },
   {
     name: "GFB Plus",
@@ -247,6 +254,7 @@ export const plans = [
     entry: false,
     recommended: false,
     acceleration: true,
+    platform: null,
   },
 ] as const;
 
