@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "GFB Makking";
+  src: url("/fonts/gestao/makking-variable-letters.woff2") format("woff2");
+  font-weight: 25 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+20, U+41-5A, U+5E, U+60-7A, U+A0, U+A8, U+AF, U+B4-B5, U+B8, U+C0-D6, U+D8-E7, U+E9-F6, U+F8-113, U+116-12B, U+12E-137, U+139-13E, U+141-148, U+14A-14D, U+150-17E, U+18F, U+192, U+1A0-1A1, U+1AF-1B0, U+218-21B, U+237, U+300-304, U+306-308, U+30A-30C, U+312, U+326-328, U+FB02;
+}
+
+@font-face {
+  font-family: "GFB Makking";
+  src: url("/fonts/gestao/makking-variable-symbols.woff2") format("woff2");
+  font-weight: 25 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+20-41, U+5B-5D, U+5F, U+7B-7E, U+A0-A7, U+A9, U+AB-AE, U+B0-B3, U+B6-B7, U+B9, U+BB-BF, U+D7, U+F7, U+2044, U+2070, U+2074-2079, U+2080-2089;
+}

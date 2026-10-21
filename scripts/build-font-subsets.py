@@ -10,7 +10,7 @@ from fontTools.ttLib import TTFont
 from fontTools.pens.recordingPen import RecordingPen
 
 project = Path(__file__).resolve().parents[1]
-root = project / "app" / "fonts"
+root = project / "src" / "app" / "fonts"
 output = project / "public" / "fonts"
 output.mkdir(parents=True, exist_ok=True)
 ranges = [

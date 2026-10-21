@@ -1,0 +1,5 @@
+Origem: image_gen, edição guiada pela referência enviada pelo usuário em 21/10/2026.
+Referência: codex-clipboard-4f2557ce-9a02-452f-8761-a2344608d43b.png.
+Arquivo original gerado: exec-b17408a7-762f-4e46-8db8-b653c99c28d3.png.
+Direção: preservar personagem cartoon, cabeça grande, olhos simples, materiais foscos, mesma mesa/monitor/cadeira/planta e enquadramento; retirar textos, substituir roxo por dourado/branco e notebook por sanfona. Sem pessoas realistas, casal ou adereços adicionais.
+Uso: painel ilustrado do login da gestão. Não representa pessoa real.

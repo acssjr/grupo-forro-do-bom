@@ -31,8 +31,12 @@ next-env.d.ts
 
 # tests
 /coverage
+/.data/
 
 # local agent tooling
 /.agents/
+/.impeccable/
+/output/
+/outputs/
 /skills-lock.json
 /CLAUDE.md

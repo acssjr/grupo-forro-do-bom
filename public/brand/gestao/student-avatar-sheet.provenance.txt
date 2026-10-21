@@ -1,0 +1,3 @@
+Origem: geração de imagem nesta conversa, ferramenta image_gen.
+Uso: avatares ilustrativos temporários de alunos e equipe; não representam pessoas reais cadastradas.
+Direção da imagem: seis retratos 3D em grade 3x2; masculino jovem/adulto/maduro na linha superior e feminino jovem/adulto/maduro na inferior. Arquivo 1536x1024. Recorte de apresentação via background-position, preservando o PNG original.

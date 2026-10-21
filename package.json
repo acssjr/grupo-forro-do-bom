@@ -1,7 +1,7 @@
 {
-  "name": "gfb-landing",
+  "name": "grupo-forro-do-bom",
   "version": "0.1.0",
-  "description": "Campanhas digitais do Grupo Forró do Bom para transformar interesse em conversas, matrículas e continuidade.",
+  "description": "Site público, gestão da escola e evolução da plataforma do Grupo Forró do Bom.",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,7 +10,9 @@
     "lint": "eslint .",
     "optimize:svg": "svgo --config svgo.config.mjs public/brand/gfb-monogram.svg public/brand/gfb-logo.svg public/brand/gfb-logo-dark.svg",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:management": "vitest run tests/management",
+    "test:site": "vitest run tests/site"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
@@ -36,5 +38,8 @@
     "typescript": "5.9.2",
     "vite": "^7.3.6",
     "vitest": "^3.2.7"
+  },
+  "engines": {
+    "node": ">=22.13.0"
   }
 }

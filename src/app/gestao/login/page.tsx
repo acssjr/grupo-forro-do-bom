@@ -1,0 +1,16 @@
+import type { Metadata } from "next";
+import { LoginPage } from "@/modules/management/auth/LoginPage";
+import { currentUser } from "@/modules/management/auth/server/session";
+import { redirect } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Entrar | GFB Gestão",
+  description: "Acesso à gestão do Grupo Forró do Bom.",
+  alternates: { canonical: "/gestao/login" },
+  robots: { index: false, follow: false },
+};
+
+export default async function Page() {
+  if (await currentUser()) redirect("/gestao");
+  return <LoginPage />;
+}

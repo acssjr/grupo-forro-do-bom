@@ -1,0 +1,172 @@
+@font-face {
+  font-family: "GFB Saans";
+  src: url("/fonts/Saans-TRIAL-Regular-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0300-036F, U+2000-206F, U+20AC, U+2190-22FF, U+2500-27FF;
+}
+
+@font-face {
+  font-family: "GFB Saans Fallback";
+  src: local("Arial");
+  font-weight: 400 699;
+  ascent-override: 91.04%;
+  descent-override: 22.51%;
+  line-gap-override: 0%;
+  size-adjust: 99.96%;
+}
+
+@font-face {
+  font-family: "GFB Saans Fallback";
+  src: local("Arial");
+  font-weight: 700 900;
+  ascent-override: 87.71%;
+  descent-override: 21.69%;
+  line-gap-override: 0%;
+  size-adjust: 103.75%;
+}
+
+@font-face {
+  font-family: "GFB Saans";
+  src: url("/fonts/Saans-TRIAL-Bold-latin.woff2") format("woff2");
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0300-036F, U+2000-206F, U+20AC, U+2190-22FF, U+2500-27FF;
+}
+
+:root {
+  --yellow: #f6c300;
+  --cream: #fff2db;
+  --brown: #2b1a0e;
+  --brown-soft: #4a2e1a;
+  --orange: #b83a18;
+  --sand: #e9cfaa;
+  --paper: #fffaf0;
+  --ink: #2b1a0e;
+  --max-width: 1440px;
+  --page-padding: clamp(1.25rem, 4vw, 4.5rem);
+  --font-sans: "GFB Saans", "GFB Saans Fallback", "Arial Nova", Arial, Helvetica, sans-serif;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  scrollbar-gutter: auto;
+  scrollbar-width: none;
+  background: var(--brown);
+}
+
+html::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--cream);
+  font-family: var(--font-sans);
+  font-size: clamp(1.0625rem, 0.35vw + 0.98rem, 1.1875rem);
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+}
+
+img,
+svg,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+}
+
+button,
+select,
+a {
+  outline-offset: 4px;
+}
+
+:focus-visible {
+  outline: 3px solid #1a73e8;
+}
+
+::selection {
+  color: var(--cream);
+  background: var(--brown);
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1000;
+  padding: 0.75rem 1rem;
+  color: var(--cream);
+  background: var(--brown);
+  transform: translateY(-160%);
+  transition: transform 160ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 200ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* Management keeps scrolling without reserving space for visible scrollbars. */
+html:has(#management-sidebar), body:has(#management-sidebar) { scrollbar-width: none; scrollbar-gutter: auto; }
+html:has(#management-sidebar)::-webkit-scrollbar, body:has(#management-sidebar)::-webkit-scrollbar { display: none; width: 0; height: 0; }
