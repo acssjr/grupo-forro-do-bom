@@ -1,0 +1,8 @@
+.data/
+.vercel/
+.impeccable/
+.agents/
+.env*
+output/
+outputs/
+coverage/

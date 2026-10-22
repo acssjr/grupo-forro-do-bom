@@ -1,9 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, expect, it } from "vitest";
+import { afterAll, describe, expect, it } from "vitest";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { LandingPage } from "@/modules/site/components/landing/LandingPage";
 import { shouldRestoreAtmospherePosition } from "@/modules/site/components/landing/AtmosphereGallery";
+
+afterAll(() => { ScrollTrigger.killAll(); ScrollTrigger.disable(); gsap.ticker.sleep(); });
 
 describe("LandingPage", () => {
   it("renders the approved message, trust proof and three editable plans", () => {

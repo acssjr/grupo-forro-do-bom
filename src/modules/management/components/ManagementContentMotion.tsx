@@ -68,7 +68,7 @@ export function ManagementContentMotion({ children }: { children: ReactNode }) {
     };
     const transition = contextSafe(() => {
       const page = host.querySelector<HTMLElement>("[data-management-page]");
-      if (!page || page === current) return;
+      if (!page || page === current || page.querySelector('[data-content-ready="false"]')) return;
       current = page;
       const items = regions(page);
       animation?.kill();
@@ -97,7 +97,7 @@ export function ManagementContentMotion({ children }: { children: ReactNode }) {
       });
     });
     const observer = new MutationObserver(transition);
-    observer.observe(host, { childList: true, subtree: true });
+    observer.observe(host, { childList: true, subtree: true, attributes: true, attributeFilter: ["data-content-ready"] });
     const finish = () => { if (reduced.matches) animation?.progress(1); };
     const resize = () => { animation?.progress(1); previous = null; };
     document.addEventListener("click", beforeNavigation, true);

@@ -6,16 +6,20 @@ import { useRouter } from "next/navigation";
 import { searchManagement, type SearchResult } from "@/modules/management/domain/search";
 import { useManagement } from "./ManagementProvider";
 import { Icon } from "./Icon";
+import { useAccess } from "../auth/AccessProvider";
+import { canAccessPath, canManagePayouts } from "../auth/types";
 import s from "./Management.module.css";
 
 export function GlobalSearch() {
   const { state } = useManagement();
+  const { user } = useAccess();
   const router = useRouter();
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const results = searchManagement(state, query);
+  const payoutResult:SearchResult={id:"repasses",title:"Repasses aos professores",detail:"Regras de cálculo e pagamentos da equipe",category:"Área",href:"/gestao/repasses",keywords:"comissao comissoes repasse professor pagamento",icon:"wallet"};
+  const results = [...(canManagePayouts(user)&&(!query||/repass|comiss|professor|pagamento/i.test(query))?[payoutResult]:[]),...searchManagement(state, query)].filter(item=>canAccessPath(user,item.href)).slice(0,10);
   useEffect(() => {
     const shortcut = (event: KeyboardEvent) => { if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") { event.preventDefault(); inputRef.current?.focus(); setOpen(true); } };
     window.addEventListener("keydown", shortcut);

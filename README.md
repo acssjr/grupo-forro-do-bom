@@ -62,6 +62,8 @@ npm run test:site
 npm run build
 ```
 
-A gestão atual persiste dados no navegador; autenticação, permissões de servidor e integrações externas ainda precisam ser implementadas. A organização em módulos não substitui esses controles.
+A autenticação, os acessos da equipe, as sessões e os repasses são persistidos no servidor. Em produção, configure `GFB_DATABASE_URL` com PostgreSQL/Neon; em desenvolvimento, a ausência dessa variável usa SQLite local. Senhas usam scrypt com salt individual, e sessões usam tokens cujo hash é armazenado no banco. Consulte [banco e publicação](docs/management/database-deployment.md).
+
+Os demais módulos (alunos, turmas, presenças e conteúdos) continuam como demonstração com dados no navegador. Não constituem ainda um cadastro compartilhado entre usuários e dispositivos.
 
 Veja [arquitetura](docs/architecture/repository.md), [gestão](docs/management/gfb-gestao-prototipo.md), [campanhas](docs/site/CAMPAIGNS.md) e [tracking](docs/site/TRACKING.md).

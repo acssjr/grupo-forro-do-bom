@@ -10,9 +10,11 @@ export type AccessInput = {
   gender: "male" | "female"; active: boolean; privileges: string[]; cohortIds: string[];
 };
 export function canManageUsers(user: AccessUser) { return user.role === "Administrador" && user.privileges.includes("Gerenciar acessos"); }
+export function canManagePayouts(user: AccessUser) { return user.id === "tailan" && user.active && user.role === "Administrador"; }
 export function canAccessPath(user: AccessUser, pathname: string) {
   const section = pathname.split("/")[2] ?? "";
   if (!section || section === "sem-permissao") return true;
+  if (section === "repasses") return canManagePayouts(user);
   if (section === "equipe" || section === "configuracoes") return canManageUsers(user);
   const permission = ({ turmas: "Turmas e presenças", alunos: "Alunos", conteudos: "Conteúdos", comunicados: "Comunicados", financeiro: "Financeiro", eventos: "Eventos" } as Record<string, string>)[section];
   return Boolean(permission && user.privileges.includes(permission));

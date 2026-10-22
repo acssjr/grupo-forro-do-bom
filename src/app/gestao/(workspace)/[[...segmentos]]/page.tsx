@@ -6,7 +6,7 @@ import { requireUser } from "@/modules/management/auth/server/session";
 import { canAccessPath } from "@/modules/management/auth/types";
 import { Empty } from "@/modules/management/components/ui";
 
-const sections: Section[] = ["inicio", "turmas", "alunos", "financeiro", "eventos", "conteudos", "comunicados", "equipe", "configuracoes"];
+const sections: Section[] = ["inicio", "turmas", "alunos", "financeiro", "repasses", "eventos", "conteudos", "comunicados", "equipe", "configuracoes"];
 export default async function Page({ params, searchParams }: { params: Promise<{ segmentos?: string[] }>; searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const { segmentos = [] } = await params;
   const user = await requireUser();

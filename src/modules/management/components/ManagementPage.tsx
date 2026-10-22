@@ -7,6 +7,7 @@ import { Dashboard } from "./Dashboard";
 import { CohortView, CohortsView } from "./CohortViews";
 import { StudentDetail, StudentsView } from "./StudentViews";
 import { FinanceView } from "./FinanceView";
+import { PayoutsView } from "./PayoutsView";
 import { ContentView, EventsView, NoticesView, SettingsView, TeamView } from "./OperationsViews";
 import { ManagementSkeleton } from "./ManagementSkeleton";
 import { Empty } from "./ui";
@@ -19,6 +20,7 @@ function ManagementScreen({ section, id, tab, query }: { section: Section; id?: 
   if (section === "turmas") { const cohort = cohorts.find((item) => item.id === id); return cohort ? <CohortView key={`${id}/${tab}`} cohort={cohort} tab={tab} /> : <CohortsView />; }
   if (section === "alunos") { const student = state.students.find((item) => item.id === id); return id ? student ? <StudentDetail key={id} student={student} /> : <Empty title="Cadastro não encontrado" text="Este aluno não existe nos dados salvos deste navegador. Volte à lista pelo menu Alunos." /> : <StudentsView key={JSON.stringify(query)} initialQuery={query.q} initialCohort={query.turma} initialFilter={query.filtro} />; }
   if (section === "financeiro") return <FinanceView key={query.filtro} initialFilter={query.filtro} />;
+  if (section === "repasses") return <PayoutsView />;
   if (section === "eventos") return <EventsView key={id} eventId={id} />;
   if (section === "conteudos") return <ContentView />;
   if (section === "comunicados") return <NoticesView />;

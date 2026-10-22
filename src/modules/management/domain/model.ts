@@ -1,6 +1,6 @@
 export type AttendanceStatus = "present" | "absent" | "justified";
 export type Level = "Iniciante" | "Básico" | "Intermediário" | "Avançado";
-export type Section = "inicio" | "turmas" | "alunos" | "financeiro" | "eventos" | "conteudos" | "comunicados" | "equipe" | "configuracoes";
+export type Section = "inicio" | "turmas" | "alunos" | "financeiro" | "repasses" | "eventos" | "conteudos" | "comunicados" | "equipe" | "configuracoes";
 export type Cohort = { code: string; id: string; name: string; level: Level; day: string; shortDay: string; time: string; teacher: string; start: string; capacity: number };
 export type StudentEvent = { id: string; studentId: string; at: string; title: string; detail: string; kind: "profile" | "payment" | "attendance" | "access" | "followup" };
 export type Student = { createdAt?: string; age?: number; avatarGender?: "male" | "female" | "neutral"; avatarChoice?: "auto" | "young" | "adult" | "mature"; id: string; name: string; cohortIds: string[]; level: Level; plan: "Essencial GFB" | "GFB Plus" | "Primeira aula"; active: boolean; attendance: number; streak: number; note: string; followup: string; followedAt?: string };

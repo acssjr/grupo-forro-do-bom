@@ -3,16 +3,16 @@
 import { useId, useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { HouseLineIcon, CalendarDotsIcon, StudentIcon, WalletIcon, MedalIcon, BooksIcon, ChatsCircleIcon, UsersThreeIcon, GearSixIcon, ArrowSquareOutIcon, SidebarSimpleIcon } from "@phosphor-icons/react";
+import { HouseLineIcon, CalendarDotsIcon, StudentIcon, WalletIcon, MedalIcon, BooksIcon, ChatsCircleIcon, UsersThreeIcon, GearSixIcon, ArrowSquareOutIcon, SidebarSimpleIcon, HandCoinsIcon } from "@phosphor-icons/react";
 import type { IconName } from "./Icon";
 import { navigationDuration } from "../domain/motion";
 
-const icons = { home: HouseLineIcon, calendar: CalendarDotsIcon, users: StudentIcon, wallet: WalletIcon, flag: MedalIcon, video: BooksIcon, message: ChatsCircleIcon, team: UsersThreeIcon, settings: GearSixIcon, logout: ArrowSquareOutIcon, panel: SidebarSimpleIcon };
+const icons = { home: HouseLineIcon, calendar: CalendarDotsIcon, users: StudentIcon, wallet: WalletIcon, transfer:HandCoinsIcon, flag: MedalIcon, video: BooksIcon, message: ChatsCircleIcon, team: UsersThreeIcon, settings: GearSixIcon, logout: ArrowSquareOutIcon, panel: SidebarSimpleIcon };
 const accents: Record<string, string> = { home:"#d6a64c", calendar:"#4e9c91", users:"#7399c3", wallet:"#c59245", flag:"#d3aa35", video:"#9583be", message:"#6aa685", team:"#c48e72", settings:"#859bb0" };
 const gestures: Record<string, { x?: number; y?: number; rotation?: number }> = { home:{y:-12}, calendar:{rotation:-5}, users:{rotation:5}, wallet:{x:16,rotation:-4}, flag:{rotation:-8}, video:{rotation:-5,x:-8}, message:{y:-12,rotation:3}, team:{y:-8}, settings:{rotation:25} };
 gsap.registerPlugin(useGSAP);
 
-export function NavigationIcon({ name, size = 23, motion = false, active = false }: { name: IconName | "team"; size?: number; motion?: boolean; active?: boolean }) {
+export function NavigationIcon({ name, size = 23, motion = false, active = false }: { name: IconName | "team" | "transfer"; size?: number; motion?: boolean; active?: boolean }) {
   const ref = useRef<SVGSVGElement>(null);
   const gradientId = `nav-sheen-${useId().replace(/:/g, "")}`;
   useGSAP(() => {
@@ -36,6 +36,6 @@ export function NavigationIcon({ name, size = 23, motion = false, active = false
     return () => reduced.removeEventListener("change",stop);
   }, {scope:ref,dependencies:[active,name],revertOnUpdate:true});
   const Component = icons[name as keyof typeof icons] || HouseLineIcon;
-  const accent = accents[name] || "#b0a36c";
+  const accent = name === "transfer" ? "#579577" : accents[name] || "#b0a36c";
   return <Component ref={ref} size={size} weight="duotone" aria-hidden="true" data-navigation-icon={name} data-icon-active={active} data-sidebar-motion={motion ? "" : undefined}><defs><linearGradient id={gradientId} x1="-100%" x2="0%"><stop stopColor={accent} /><stop offset=".48" stopColor={accent} /><stop offset=".6" stopColor="#fff5d4" /><stop offset=".75" stopColor={accent} /><stop offset="1" stopColor={accent} /></linearGradient></defs></Component>;
 }
