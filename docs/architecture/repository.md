@@ -6,7 +6,10 @@ Um repositório e uma aplicação para o Grupo Forró do Bom. Não há workspace
 
 ## Limites
 
+Os padrões visuais e de interação da gestão ficam na [brandline](../design/brandline.md); mudanças em busca, ações, ícones e listas devem reutilizar esses padrões.
+
 - `src/app` contém a composição de rotas e os layouts do Next.js. O grupo `(site)` não muda URLs.
+- `src/app/gestao/(workspace)/layout.tsx` mantém a navegação autenticada persistente entre seções. A rota variável fica abaixo desse layout, e `/gestao/login` permanece fora dele. Não mover o shell para o layout de `[[...segmentos]]`: ele seria remontado em cada troca de seção.
 - `src/modules/site` concentra a apresentação pública, conteúdo comercial e funções de campanhas.
 - `src/modules/management/components` contém a interface da gestão; `domain` contém seus modelos e cálculos.
 - `src/shared/ui` recebe componentes reutilizáveis. Componentes exclusivos de uma área ficam dentro dela.

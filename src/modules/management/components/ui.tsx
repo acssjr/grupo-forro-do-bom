@@ -17,7 +17,7 @@ export function Avatar({ name, large = false, age, gender, choice }: { name: str
 
 export function Badge({ children, kind = "neutral" }: { children: ReactNode; kind?: "neutral" | "yellow" | "green" | "red" }) { return <span className={`${s.badge} ${s[`badge_${kind}`]}`}>{children}</span>; }
 export function Empty({ title, text, children }: { title: string; text: string; children?: ReactNode }) { return <div className={s.empty}><Icon name="search" size={26} /><h3>{title}</h3><p>{text}</p>{children}</div>; }
-export function PageTitle({ title, description, children }: { title: string; description: string; children?: ReactNode }) { return <header className={s.pageTitle}><div><h1>{title}</h1><p>{description}</p></div>{children && <div className={s.titleActions}>{children}</div>}</header>; }
+export function PageTitle({ title, description, children }: { title: ReactNode; description: string; children?: ReactNode }) { return <header className={s.pageTitle} data-motion-region="heading"><div><h1>{title}</h1><p>{description}</p></div>{children && <div className={s.titleActions}>{children}</div>}</header>; }
 export function Modal({ title, onClose, children, wide = false, footer }: { title: string; onClose: () => void; children: ReactNode; wide?: boolean; footer?: ReactNode }) {
   const ref = useRef<HTMLDialogElement>(null);
   useEffect(() => {

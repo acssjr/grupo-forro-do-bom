@@ -1,0 +1,11 @@
+# Brandline da plataforma de gestão
+
+Aplicar estes padrões em novas telas e ajustes, preservando os componentes compartilhados em `src/modules/management/components/Management.module.css`.
+
+- **Busca:** `searchFrame` é a busca global em fundo escuro; `searchField` é sua versão para superfícies claras. Ambas usam cantos arredondados, moldura discreta, superfície interna clara e lupa à esquerda. A busca local tem altura de 54 px no desktop e 46 px no celular. Não criar campos de pesquisa planos independentes por tela. Foco neutro no contorno, sem halo dourado; placeholder não substitui nome acessível.
+- **Ações:** ação principal amarela sólida; secundária com superfície e contorno; ação textual sublinhada e com seta quando leva a outro contexto. Cursor de ação, hover em dispositivos com ponteiro e foco visível. Desabilitados conservam o estado sem sugerir interação. Não apresentar botões como texto informativo sem outro sinal visual.
+- **Menu:** ícones inativos monocromáticos. Na camada selecionada, o preenchimento duotone recebe a cor própria do objeto: calendário verde, carteira ocre, livros lavanda, conversa verde. O contorno conserva contraste. Movimento de confirmação curto, próprio do ícone; brilho estreito passa uma vez a cada oito segundos aproximadamente. Não mover a caixa externa do ícone, pois ela compartilha o grid e a animação do notch.
+- **Listas filtradas:** conservar a identidade das linhas, medir posições antes/depois e deslocar apenas as que mudaram. Saídas curtas; entradas com deslocamento local de 12 px. Reorganização em 380 ms com `sine.inOut`, coerente com o menu; evitar fade da lista inteira, escala de texto ou remontagem da tabela. A altura acompanha a retirada das linhas, sem salto de rodapé. Interrupções partem do estado visível; cópias temporárias são inertes, ocultas da acessibilidade e removidas ao concluir.
+- **Acessibilidade:** reduzir movimento respeita a preferência do sistema, inclusive quando muda durante a animação. Teclado não aguarda movimento para agir. Cor e animação complementam `aria-current`, rótulos e estado selecionado; nunca os substituem.
+
+As regras de continuidade do shell e do notch estão em [navigation-motion.md](../management/navigation-motion.md).

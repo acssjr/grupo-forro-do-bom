@@ -42,7 +42,7 @@ export function LoginPage() {
         <div className={s.story}><h2 id="login-story-title">Gestão da<br />escola.</h2><p>Alunos, turmas, conteúdos e financeiro.</p></div>
       </section>
       <section className={s.access} aria-labelledby="login-title">
-        <Link href="/" className={s.brand} aria-label="Grupo Forró do Bom — ir para o site"><Image src="/brand/gfb-logo-dark.png" alt="Forró do Bom" width={940} height={624} priority /><span>Plataforma de Gestão</span></Link>
+        <Link href="/" className={s.brand} aria-label="Grupo Forró do Bom — ir para o site"><Image src="/brand/gfb-logo-dark.svg" alt="Forró do Bom" width={940} height={624} priority /><span>Plataforma de Gestão</span></Link>
         <div className={s.glass}>
           <span className={s.beam} aria-hidden="true"><span /></span>
           <header className={s.heading}><h1 id="login-title">Acesse sua conta</h1><p>Informe seu usuário e sua senha.</p></header>

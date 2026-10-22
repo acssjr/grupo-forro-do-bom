@@ -29,5 +29,5 @@ function ManagementScreen({ section, id, tab, query }: { section: Section; id?: 
 export function ManagementPage(props: { section: Section; id?: string; tab?: string; query: Record<string, string> }) {
   const { state } = useManagement();
   if (!state.ready) return <ManagementSkeleton compact={props.section !== "inicio"} />;
-  return <div className={s.pageEntrance} key={`${props.section}/${props.id ?? ""}/${props.tab ?? ""}`}><ManagementScreen {...props} /></div>;
+  return <div className={s.pageEntrance} data-management-page={`${props.section}/${props.id ?? ""}/${props.tab ?? ""}`} key={`${props.section}/${props.id ?? ""}/${props.tab ?? ""}`}><ManagementScreen {...props} /></div>;
 }

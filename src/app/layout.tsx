@@ -15,6 +15,10 @@ export const metadata: Metadata = {
   title,
   description,
   applicationName: siteConfig.name,
+  icons: {
+    icon: { url: "/brand/gfb-logo.svg", type: "image/svg+xml", sizes: "any" },
+    shortcut: "/brand/gfb-logo.svg",
+  },
   alternates: { canonical: "/" },
   keywords: [
     "aula de forró em Feira de Santana",
@@ -59,7 +63,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   const measurementId = siteConfig.ga4MeasurementId;
 
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" data-scroll-behavior="smooth">
       <head>
         <link rel="preload" href="/fonts/Saans-TRIAL-Regular-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/Saans-TRIAL-Bold-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />

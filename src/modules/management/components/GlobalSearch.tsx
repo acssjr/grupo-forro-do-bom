@@ -24,9 +24,11 @@ export function GlobalSearch() {
   const select = (item: SearchResult | null) => { if (!item) return; setOpen(false); setQuery(""); inputRef.current?.blur(); router.push(item.href); };
   return <div className={s.searchContainer} ref={containerRef}>
     <Combobox.Root<SearchResult> items={results} filter={null} value={null} inputValue={query} onInputValueChange={setQuery} open={open} onOpenChange={setOpen} onValueChange={select} autoHighlight itemToStringLabel={(item) => item.title}>
-      <Combobox.InputGroup className={s.globalSearch}><Icon name="search" size={18} /><Combobox.Input ref={inputRef} aria-label="Buscar na gestão" placeholder="Busque alunos, turmas, funções…" onFocus={() => setOpen(true)} /><kbd>Ctrl K</kbd></Combobox.InputGroup>
+      <div className={s.searchFrame}>
+        <Combobox.InputGroup className={s.globalSearch}><Icon name="search" size={19} /><Combobox.Input ref={inputRef} aria-label="Buscar na gestão" placeholder="Buscar alunos, turmas e conteúdos…" onFocus={() => setOpen(true)} /><kbd aria-label="Atalho Control K"><span>Ctrl</span><span>K</span></kbd></Combobox.InputGroup>
+      </div>
       <Combobox.Portal container={containerRef}>
-        <Combobox.Positioner className={s.searchPositioner} sideOffset={10} align="center">
+        <Combobox.Positioner className={s.searchPositioner} sideOffset={10} align="start">
           <Combobox.Popup className={s.searchPopup}>
             <div className={s.searchHeading}>{query ? "Resultados da busca" : "Acessos rápidos"}<span>{results.length} {results.length === 1 ? "resultado" : "resultados"}</span></div>
             <Combobox.Empty className={s.searchEmpty}>Nenhum resultado. Tente um nome, código de turma ou função.</Combobox.Empty>

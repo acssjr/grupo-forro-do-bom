@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { LoginPage } from "@/modules/management/auth/LoginPage";
-import { currentUser } from "@/modules/management/auth/server/session";
-import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Entrar | GFB Gestão",
@@ -10,7 +8,6 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default async function Page() {
-  if (await currentUser()) redirect("/gestao");
+export default function Page() {
   return <LoginPage />;
 }

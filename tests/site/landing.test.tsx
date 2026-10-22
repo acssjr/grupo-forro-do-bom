@@ -582,27 +582,11 @@ describe("LandingPage", () => {
     expect(statSync("public/brand/gfb-monogram.svg").size).toBeLessThan(10 * 1024);
   });
 
-  it("ships a lightweight conventional favicon instead of the full monogram", () => {
-    const favicon = readFileSync("src/app/favicon.ico");
-    const imageCount = favicon.readUInt16LE(4);
-    const dimensions = Array.from({ length: imageCount }, (_, index) => {
-      const entryOffset = 6 + index * 16;
-      const width = favicon[entryOffset] || 256;
-      const height = favicon[entryOffset + 1] || 256;
-
-      return [width, height];
-    });
+  it("uses the current SVG brand as the global favicon without the old ICO override", () => {
     const layout = readFileSync("src/app/layout.tsx", "utf8");
-
-    expect(favicon.readUInt16LE(0)).toBe(0);
-    expect(favicon.readUInt16LE(2)).toBe(1);
-    expect(dimensions).toEqual([
-      [16, 16],
-      [32, 32],
-      [48, 48],
-    ]);
-    expect(favicon.byteLength).toBeLessThan(10 * 1024);
-    expect(layout).not.toContain('/brand/gfb-monogram.svg');
+    expect(existsSync("src/app/favicon.ico")).toBe(false);
+    expect(layout).toContain('icon: { url: "/brand/gfb-logo.svg", type: "image/svg+xml", sizes: "any" }');
+    expect(layout).toContain('shortcut: "/brand/gfb-logo.svg"');
   });
 
   it("builds the leveling selector as one adaptive GSAP word morph", () => {
