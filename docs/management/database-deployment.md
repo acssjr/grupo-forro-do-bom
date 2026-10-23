@@ -3,8 +3,8 @@
 ## Ambiente
 
 - Repositório: acssjr/grupo-forro-do-bom, branch main.
-- Hospedagem: projeto Vercel gfb_lp-main, runtime Node.js 24.
-- Banco: projeto Neon grupo-forro-do-bom (aged-hall-54743645), região AWS us-east-1, banco gfb_management.
+- Hospedagem: projeto Vercel gfb_lp-main, runtime Node.js 24, funções em São Paulo (gru1), definido em vercel.json.
+- Banco: projeto Neon grupo-forro-do-bom-sp (bold-scene-46152196), região AWS sa-east-1, banco gfb_management.
 - Credencial somente na variável secreta GFB_DATABASE_URL de produção da Vercel. Nunca usar prefixo NEXT_PUBLIC_, incluir URI no Git ou expor a configuração no cliente.
 - SQLite em .data/ continua disponível para desenvolvimento sem GFB_DATABASE_URL. Produção falha de forma fechada se a conexão persistente não estiver configurada; /tmp não é um banco persistente.
 
