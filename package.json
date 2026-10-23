@@ -22,7 +22,8 @@
     "next": "16.3.1",
     "postgres": "3.4.8",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "simple-liquid-glass": "5.4.0"
   },
   "devDependencies": {
     "@testing-library/dom": "10.4.1",

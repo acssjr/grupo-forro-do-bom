@@ -12,7 +12,7 @@ const accents: Record<string, string> = { home:"#d6a64c", calendar:"#4e9c91", us
 const gestures: Record<string, { x?: number; y?: number; rotation?: number }> = { home:{y:-12}, calendar:{rotation:-5}, users:{rotation:5}, wallet:{x:16,rotation:-4}, flag:{rotation:-8}, video:{rotation:-5,x:-8}, message:{y:-12,rotation:3}, team:{y:-8}, settings:{rotation:25} };
 gsap.registerPlugin(useGSAP);
 
-export function NavigationIcon({ name, size = 23, motion = false, active = false }: { name: IconName | "team" | "transfer"; size?: number; motion?: boolean; active?: boolean }) {
+export function NavigationIcon({ name, size = 23, motion = false, active = false, outline = false }: { name: IconName | "team" | "transfer"; size?: number; motion?: boolean; active?: boolean; outline?: boolean }) {
   const ref = useRef<SVGSVGElement>(null);
   const gradientId = `nav-sheen-${useId().replace(/:/g, "")}`;
   useGSAP(() => {
@@ -37,5 +37,5 @@ export function NavigationIcon({ name, size = 23, motion = false, active = false
   }, {scope:ref,dependencies:[active,name],revertOnUpdate:true});
   const Component = icons[name as keyof typeof icons] || HouseLineIcon;
   const accent = name === "transfer" ? "#579577" : accents[name] || "#b0a36c";
-  return <Component ref={ref} size={size} weight="duotone" aria-hidden="true" data-navigation-icon={name} data-icon-active={active} data-sidebar-motion={motion ? "" : undefined}><defs><linearGradient id={gradientId} x1="-100%" x2="0%"><stop stopColor={accent} /><stop offset=".48" stopColor={accent} /><stop offset=".6" stopColor="#fff5d4" /><stop offset=".75" stopColor={accent} /><stop offset="1" stopColor={accent} /></linearGradient></defs></Component>;
+  return <Component ref={ref} size={size} weight={outline ? "regular" : "duotone"} aria-hidden="true" data-navigation-icon={name} data-icon-active={active} data-sidebar-motion={motion ? "" : undefined}><defs><linearGradient id={gradientId} x1="-100%" x2="0%"><stop stopColor={accent} /><stop offset=".48" stopColor={accent} /><stop offset=".6" stopColor="#fff5d4" /><stop offset=".75" stopColor={accent} /><stop offset="1" stopColor={accent} /></linearGradient></defs></Component>;
 }

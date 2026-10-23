@@ -1,3 +1,4 @@
+import { AnimatedDisclosure } from "@/shared/ui/AnimatedDisclosure";
 import { SectionHeading } from "@/shared/ui/SectionHeading";
 import { WhatsAppLink } from "@/shared/ui/WhatsAppLink";
 import { plans, whatsappMessages } from "@/modules/site/content/siteContent";
@@ -60,13 +61,12 @@ export function PricingSection() {
               ))}
             </ul>
             {plan.platform ? (
-              <details className={styles.planDisclosure}>
-                <summary aria-label="Entenda o que está incluído na plataforma do aluno">
+              <AnimatedDisclosure className={styles.planDisclosure} label="Entenda o que está incluído na plataforma do aluno" summary={<>
                   <span>{plan.platform.prompt}</span>
                   <span aria-hidden="true">?</span>
-                </summary>
+                </>}>
                 <p>{plan.platform.description}</p>
-              </details>
+              </AnimatedDisclosure>
             ) : null}
             {plan.note ? <p className={styles.planNote}>{plan.note}</p> : null}
             <WhatsAppLink

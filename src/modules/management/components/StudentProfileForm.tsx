@@ -17,7 +17,7 @@ export function StudentProfileForm({ student, onSaved }: { student?: Student; on
   const [gender, setGender] = useState<AvatarGender>(student?.avatarGender ?? seed?.avatarGender ?? "neutral");
   const [choice, setChoice] = useState<AvatarAge | "auto">(student?.avatarChoice ?? "auto");
   const [cohortId, setCohortId] = useState(student?.cohortIds[0] ?? cohorts[0].id);
-  return <form onSubmit={(event) => {
+  return <form className={s.studentProfileForm} onSubmit={(event) => {
     event.preventDefault();
     const cohort = cohorts.find((item) => item.id === cohortId);
     if (!cohort || !name.trim() || !age) return;
@@ -32,6 +32,6 @@ export function StudentProfileForm({ student, onSaved }: { student?: Student; on
     <div className={s.profileFields}><label className={s.field}>Idade<input name="age" type="number" min={1} max={120} required value={age} onChange={(event) => setAge(event.target.value)} inputMode="numeric" /></label><label className={s.field}>Estilo do avatar<SchoolSelect label="Estilo do avatar" value={gender} onChange={(value) => setGender(value as AvatarGender)} options={[{ value: "neutral", label: "Neutro" }, { value: "male", label: "Masculino" }, { value: "female", label: "Feminino" }]} /></label></div>
     <label className={s.field}>Foto de perfil<SchoolSelect label="Faixa do avatar" value={choice} onChange={(value) => setChoice(value as AvatarAge | "auto")} options={[{ value: "auto", label: "Automática pela idade" }, { value: "young", label: "Jovem" }, { value: "adult", label: "Adulto" }, { value: "mature", label: "Maduro" }]} /></label>
     {!student && <><label className={s.field}>Turma<SchoolSelect label="Turma do novo aluno" name="cohort" value={cohortId} onChange={setCohortId} required options={cohorts.map((item) => ({ value: item.id, label: `${item.code} · ${item.name}` }))} /></label><p className={s.fieldHelp}>Plano inicial: Primeira aula.</p></>}
-    <button className={s.primary} type="submit">{student ? "Salvar perfil" : "Criar cadastro"}</button>
+    <div className={s.profileFormActions}><button className={s.primary} type="submit">{student ? "Salvar perfil" : "Criar cadastro"}</button></div>
   </form>;
 }

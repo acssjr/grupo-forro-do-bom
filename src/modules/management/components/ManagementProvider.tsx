@@ -13,6 +13,13 @@ export function ManagementProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try { const raw = localStorage.getItem(STORAGE_KEY); const saved: unknown = raw ? JSON.parse(raw) : null; dispatch({ type: "hydrate", state: isDemoState(saved) ? saved : initialState }); }
     catch { dispatch({ type: "hydrate", state: initialState }); }
+    // Other open tabs can publish notices or record follow-ups while this panel is visible.
+    const sync = (event: StorageEvent) => {
+      if (event.key !== STORAGE_KEY || !event.newValue) return;
+      try { const saved: unknown = JSON.parse(event.newValue); if (isDemoState(saved)) dispatch({ type: "hydrate", state: saved }); } catch { /* Ignore incomplete external saves. */ }
+    };
+    window.addEventListener("storage", sync);
+    return () => window.removeEventListener("storage", sync);
   }, []);
   useEffect(() => {
     if (!state.ready) return;

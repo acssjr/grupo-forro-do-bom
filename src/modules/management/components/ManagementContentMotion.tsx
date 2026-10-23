@@ -3,7 +3,8 @@
 import { useRef, type ReactNode } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { contentOffset } from "../domain/motion";
+import { uiDuration, uiEase } from "@/shared/ui/disclosure-motion";
+import { contentOffset, mobilePageDirection } from "../domain/motion";
 import s from "./Management.module.css";
 
 gsap.registerPlugin(useGSAP);
@@ -41,6 +42,9 @@ export function ManagementContentMotion({ children }: { children: ReactNode }) {
     const host = root.current;
     if (!host || !contextSafe) return;
     const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+    const mobile = matchMedia("(width < 768px)");
+    let mobileTarget: HTMLElement | null = null;
+    let headingTarget: HTMLElement | null = null;
     let current: HTMLElement | null = null;
     let previous: Region[] | null = null;
     let animation: gsap.core.Timeline | null = null;
@@ -49,7 +53,7 @@ export function ManagementContentMotion({ children }: { children: ReactNode }) {
     const immediate = () => reduced.matches || host.closest("[data-management-shell]")?.getAttribute("data-keyboard-navigation") === "true";
 
     const capture = () => {
-      if (!current || immediate()) { previous = null; return; }
+      if (!current || immediate() || mobile.matches) { previous = null; return; }
       const items = regions(current);
       // Keep the outgoing view moving while Next prepares the destination.
       // Never freeze it at the click or force it to its final frame.
@@ -69,12 +73,43 @@ export function ManagementContentMotion({ children }: { children: ReactNode }) {
     const transition = contextSafe(() => {
       const page = host.querySelector<HTMLElement>("[data-management-page]");
       if (!page || page === current || page.querySelector('[data-content-ready="false"]')) return;
+      const fromKey = current?.dataset.managementPage;
+      const toKey = page.dataset.managementPage ?? "";
       current = page;
-      const items = regions(page);
+      const items = mobile.matches ? [] : regions(page);
       animation?.kill();
+      if (mobileTarget) { gsap.set(mobileTarget, { clearProps:"transform,opacity" }); mobileTarget = null; }
+      // The portal lives outside main. Move only its title slot, never the shell,
+      // logo or utility buttons, and include it in the same interruptible timeline.
+      const heading = host.closest("[data-management-shell]")?.querySelector<HTMLElement>("[data-mobile-heading-motion]") ?? null;
+      const headingX = headingTarget === heading && heading ? Number(gsap.getProperty(heading, "x")) : 0;
+      if (headingTarget) { gsap.set(headingTarget, { clearProps:"transform,opacity" }); headingTarget = null; }
       clearTimeout(expiry);
       const before = previous;
       previous = null;
+      if (mobile.matches) {
+        // No travel on first paint, query-only updates, keyboard activation or reduced motion.
+        const direction = fromKey ? mobilePageDirection(fromKey, toKey) : 0;
+        if (immediate() || !direction) { host.dataset.contentAnimating = "false"; return; }
+        host.dataset.contentAnimating = "true";
+        mobileTarget = page;
+        gsap.set(page, { x:direction * 20, y:0, opacity:.98 });
+        if (heading) {
+          headingTarget = heading;
+          // Continue a partially travelled heading rather than restarting it.
+          gsap.set(heading, { x:headingX || direction * 14, y:0, opacity:.98 });
+        }
+        animation = gsap.timeline({ onComplete:() => { host.dataset.contentAnimating = "false"; } })
+          .to(page, {
+            x:0, y:0, opacity:1, duration:uiDuration.navigation, ease:uiEase("out"),
+            force3D:true, clearProps:"transform,opacity",
+          });
+        if (heading) animation.to(heading, {
+          x:0, y:0, opacity:1, duration:uiDuration.navigation, ease:uiEase("out"),
+          force3D:true, clearProps:"transform,opacity",
+        }, 0);
+        return;
+      }
       if (immediate() || !items.length) { host.dataset.contentAnimating = "false"; return; }
       host.dataset.contentAnimating = "true";
       const timeline = gsap.timeline({ onComplete: () => { host.dataset.contentAnimating = "false"; } });
@@ -83,6 +118,11 @@ export function ManagementContentMotion({ children }: { children: ReactNode }) {
       // Headers and filters are real shared anchors. A chart, table and calendar
       // are different content: do not squeeze them into each other's rectangles.
       items.forEach(item => {
+        // The mobile title is part of the dark app shell, not travelling content.
+        if (item.id.startsWith("workspace-heading") && matchMedia("(width < 768px)").matches) {
+          gsap.set(item.element, { clearProps:"transform" });
+          return;
+        }
         const anchor = item.id.startsWith("workspace-heading") || item.id.startsWith("workspace-filters");
         const old = anchor ? before?.find(region => region.id === item.id) : undefined;
         const index = content.indexOf(item);

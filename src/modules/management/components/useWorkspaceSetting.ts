@@ -8,7 +8,9 @@ export function useWorkspaceSetting<T>(key: string, initial: T) {
     const read = () => { try { const raw = localStorage.getItem(storageKey); if (raw) setValue(JSON.parse(raw) as T); } catch { /* Keep defaults if storage is unavailable. */ } };
     queueMicrotask(read);
     window.addEventListener("gfb-workspace-change", read);
-    return () => window.removeEventListener("gfb-workspace-change", read);
+    const sync = (event: StorageEvent) => { if (event.key === storageKey) read(); };
+    window.addEventListener("storage", sync);
+    return () => { window.removeEventListener("gfb-workspace-change", read); window.removeEventListener("storage", sync); };
   }, [storageKey]);
   const save = (next: T) => {
     // Let callers show a failure instead of claiming an unsaved change succeeded.
